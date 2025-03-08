@@ -6,7 +6,13 @@ import connectDB from "./config/mongodb.js"
 import cors from "cors"
 import connectCloudinary from "./config/cloudinary.js"
 const app = express()
-app.use(cors())
+
+app.use(cors({
+    origin: "https://full-stack-mayank-edemy.vercel.app", // Allow frontend origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Authorization", // Allow Authorization header
+    credentials: true, // Allow sending cookies & credentials
+}));
 
 
 
