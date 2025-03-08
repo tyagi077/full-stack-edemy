@@ -8,8 +8,12 @@ import connectCloudinary from "./config/cloudinary.js"
 const app = express()
 
 app.use(cors({
-    origin: "http://localhost:5173/"
+    origin: ["http://localhost:5173", "https://full-stack-mayank-edemy.vercel.app"], // Allow both local & production frontend
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Authorization", // Allow auth headers
+    credentials: true // Allow cookies & credentials
 }));
+
 
 
 
