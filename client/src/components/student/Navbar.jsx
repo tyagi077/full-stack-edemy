@@ -6,7 +6,7 @@ import axios from "axios"
 import { toast } from 'react-toastify';
 function Navbar() {
     const isCourseListPage = location.pathname.includes('/course-list');
-    const { navigate, user ,setUser} = useContext(AppContext)
+    const { navigate, user ,setUser,BASE_URL } = useContext(AppContext)
 
     const handleCreateAccount = () => {
         navigate("/sign-up")
@@ -16,7 +16,7 @@ function Navbar() {
         const token = localStorage.getItem("token")
         if (!token) return;
         try {
-            const response = await axios.put("http://localhost:3000/api/v1/user/update",{
+            const response = await axios.put(`${BASE_URL}/api/v1/user/update`,{
                 isEducator:true
             },{
                 headers: {

@@ -3,6 +3,9 @@ import { data, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const BASE_URL = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+
+
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
@@ -18,7 +21,7 @@ export const AppContextProvider = (props) => {
             const token = localStorage.getItem("token")
             if (!token) return;
             try {
-                const response = await axios.get("http://localhost:3000/api/v1/user/data", {
+                const response = await axios.get(`${BASE_URL}/api/v1/user/data`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -41,7 +44,7 @@ export const AppContextProvider = (props) => {
     const fetchAllCourse = async () => {
         try {
 
-            const response = await axios.get("http://localhost:3000/api/v1/course/")
+            const response = await axios.get(`${BASE_URL}/api/v1/course/`)
             if (response.data.success) {
                 setAllCourses(response.data.courses)
             }else{
@@ -103,7 +106,7 @@ export const AppContextProvider = (props) => {
         const token = localStorage.getItem("token")
         if (!token) return;
 
-        const response = await axios.get("http://localhost:3000/api/v1/user/enrolled-courses", {
+        const response = await axios.get(`${BASE_URL}/api/v1/user/enrolled-courses`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -119,7 +122,7 @@ export const AppContextProvider = (props) => {
     }, [])
 
     const value = {
-        allCourses, user, setUser,fetchAllCourse, navigate, calculateRating, calculateChapterTime, calculateCourseDuration, calculateNoOfLectures, fetchUserEnrolledCourses, enrolledCourses
+        allCourses, user,BASE_URL, setUser,fetchAllCourse, navigate, calculateRating, calculateChapterTime, calculateCourseDuration, calculateNoOfLectures, fetchUserEnrolledCourses, enrolledCourses
     }
     return (
         <AppContext.Provider value={value}>

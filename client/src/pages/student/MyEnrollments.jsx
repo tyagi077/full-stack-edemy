@@ -4,7 +4,7 @@ import Footer from '../../components/student/Footer'
 import axios from "axios"
 import { toast } from 'react-toastify'
 function MyEnrollments() {
-  const { enrolledCourses, calculateCourseDuration, navigate, user, fetchUserEnrolledCourses, calculateNoOfLectures } = useContext(AppContext)
+  const {BASE_URL , enrolledCourses, calculateCourseDuration, navigate, user, fetchUserEnrolledCourses, calculateNoOfLectures } = useContext(AppContext)
 
   const [progressArray, setProgressArray] = useState([])
 
@@ -13,7 +13,7 @@ function MyEnrollments() {
       const token = localStorage.getItem("token");
       const tempProgressArray = await Promise.all(
         enrolledCourses.map(async (course) => {
-          const response = await axios.post(`http://localhost:3000/api/v1/user/get-course-progress`, {
+          const response = await axios.post(`${BASE_URL}/api/v1/user/get-course-progress`, {
             courseId: course._id
           }, {
             headers: { Authorization: `Bearer ${token}` }

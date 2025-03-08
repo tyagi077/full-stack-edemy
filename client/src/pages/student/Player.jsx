@@ -11,7 +11,7 @@ import { toast } from 'react-toastify'
 
 function Player() {
 
-  const { enrolledCourses, calculateChapterTime, user, fetchUserEnrolledCourses,fetchAllCourse } = useContext(AppContext)
+  const {BASE_URL , enrolledCourses, calculateChapterTime, user, fetchUserEnrolledCourses,fetchAllCourse } = useContext(AppContext)
   const { courseId } = useParams()
   const [courseData, setCourseData] = useState(null)
   const [openSection, setOpenSections] = useState({})
@@ -66,7 +66,7 @@ function Player() {
   const markLectureComplted = async (lectureId) => {
     try {
       const token = localStorage.getItem("token")
-      const resposne = await axios.post("http://localhost:3000/api/v1/user/update-course-progress", {
+      const resposne = await axios.post(`${BASE_URL}/api/v1/user/update-course-progress`, {
         courseId,
         lectureId
       }, {
@@ -89,7 +89,7 @@ function Player() {
   const getCourseProgress=async()=>{
     try{
       const token = localStorage.getItem("token")
-      const resposne = await axios.post("http://localhost:3000/api/v1/user/get-course-progress", {
+      const resposne = await axios.post(`${BASE_URL}/api/v1/user/get-course-progress`, {
         courseId
       }, {
         headers: {
@@ -111,7 +111,7 @@ function Player() {
   const handleRating=async(rating)=>{
     try{
       const token = localStorage.getItem("token")
-      const resposne = await axios.post("http://localhost:3000/api/v1/user/add-rating", {
+      const resposne = await axios.post(`${BASE_URL}/api/v1/user/add-rating`, {
         courseId,
         rating
       }, {

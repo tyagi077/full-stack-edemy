@@ -7,7 +7,7 @@ import SkeletonCard from '../../components/educator/SkeltonCard'
 
 function StudentsEnrolled() {
 
-  const {user}=useContext(AppContext)
+  const {user,BASE_URL }=useContext(AppContext)
 
   const [enrolledStudents,setEnrolledStudents]=useState(null)
 
@@ -15,7 +15,7 @@ function StudentsEnrolled() {
     const token = localStorage.getItem("token")
     if (!token) return;
     try {
-        const response = await axios.get("http://localhost:3000/api/v1/course/enrolled-Students", {
+        const response = await axios.get(`${BASE_URL}/api/v1/course/enrolled-Students`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

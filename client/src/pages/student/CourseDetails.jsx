@@ -23,11 +23,11 @@ function CourseDetails() {
   const [isAlreadyEnrolled, setIsAlreadyEnrolled] = useState(false)
   const [playerData,setPlayerData] = useState(null)
 
-  const { allCourses, calculateRating, calculateChapterTime, calculateCourseDuration, calculateNoOfLectures,user } = useContext(AppContext)
+  const { allCourses, calculateRating, calculateChapterTime, calculateCourseDuration, calculateNoOfLectures,user ,BASE_URL } = useContext(AppContext)
 
   const fetchCourseData = async () => {
    try{
-    const response = await axios.get(`http://localhost:3000/api/v1/course/course/${id}`)
+    const response = await axios.get(`${BASE_URL}/api/v1/course/course/${id}`)
     if(response.data.success){
       setCourseData(response.data.courseData)
     }else{
@@ -49,7 +49,7 @@ function CourseDetails() {
         return
       }
             try {
-              const response = await axios.post("http://localhost:3000/api/v1/purchase/createOrder", {
+              const response = await axios.post(`${BASE_URL}/api/v1/purchase/createOrder`, {
                 amount: Math.round((courseData.coursePrice - (courseData.discount * courseData.coursePrice) / 100) * 100),
                 currency: "INR"
               });
@@ -66,7 +66,7 @@ function CourseDetails() {
 
   const handlePaymentVerify = async (data) => {
     const options = {
-      key: import.meta.env.RAZORPAY_KEY_ID, 
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID, 
       amount: data.response.amount,
       currency: data.response.currency,
       name: "Edemy",
@@ -75,7 +75,7 @@ function CourseDetails() {
       handler: async (response) => {
         try {
           console.log(response);
-          const res = await axios.post("http://localhost:3000/api/v1/purchase/verify", {
+          const res = await axios.post(`${BASE_URL}/api/v1/purchase/verify`, {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature
@@ -84,10 +84,10 @@ function CourseDetails() {
           console.log("Verification response:", res.data);
           if (res.data.status) {
             try {
-              const successRes = await axios.get(`http://localhost:3000/api/v1/purchase/payment/${response.razorpay_payment_id}`);
+              const successRes = await axios.get(`${BASE_URL}/api/v1/purchase/payment/${response.razorpay_payment_id}`);
 
               const paymentTime = new Date(successRes.data.payment.created_at * 1000).toLocaleString();
-              const res = await axios.post(`http://localhost:3000/api/v1/purchase/storeOrder/`,{
+              const res = await axios.post(`${BASE_URL}/api/v1/purchase/storeOrder/`,{
                 course_Id:id,
                 user_Id:user._id,
                 amount:Math.round((courseData.coursePrice - (courseData.discount * courseData.coursePrice) / 100) * 100)

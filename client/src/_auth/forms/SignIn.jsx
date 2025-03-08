@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 function SignIn() {
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
-    const { setUser, navigate } = useContext(AppContext);
+    const { setUser, navigate ,BASE_URL } = useContext(AppContext);
 
     const handleClick = () => {
         navigate("/sign-up")
@@ -14,12 +14,12 @@ function SignIn() {
     const formSubmit = async (data) => {
 
         try {
-            const response = await axios.post("http://localhost:3000/api/v1/user/signin", data)
+            const response = await axios.post(`${BASE_URL}/api/v1/user/signin`, data)
             if (response.data.success === true) {
 
                 localStorage.setItem('token', response.data.token)
                 toast.success(response.data.message)
-                const userResponse = await axios.get("http://localhost:3000/api/v1/user/data", {
+                const userResponse = await axios.get(`${BASE_URL}/api/v1/user/data`, {
                     headers: { Authorization: `Bearer ${response.data.token}` },
                 });
                 if (userResponse.data.success) {

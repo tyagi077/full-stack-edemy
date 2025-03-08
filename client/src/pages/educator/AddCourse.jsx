@@ -1,12 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import uniqid from 'uniqid';
 import Quill from 'quill';
 import { assets } from '../../assets/assets';
 import { toast } from 'react-toastify';
 import axios from "axios"
+import { AppContext } from '../../context/AppContext';
 function AddCourse() {
 
   const [loading,setLoading]=useState(false);
+
+  const {BASE_URL }=useContext(AppContext)
 
 
   const quillRef = useRef(null);
@@ -117,7 +120,7 @@ function AddCourse() {
       const token = localStorage.getItem("token")
       if (!token) return;
 
-      const response = await axios.post("http://localhost:3000/api/v1/course/add-course", formData, {
+      const response = await axios.post(`${BASE_URL}/api/v1/course/add-course`, formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }

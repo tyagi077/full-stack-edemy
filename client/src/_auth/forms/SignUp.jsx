@@ -2,19 +2,19 @@
     import { useForm } from "react-hook-form";
     import { AppContext } from '../../context/AppContext';
     import axios from "axios"
-import { toast } from 'react-toastify';
+    import { toast } from 'react-toastify';
 
     function SignUp() {
 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
-    const {navigate} = useContext(AppContext);
+    const {navigate,BASE_URL } = useContext(AppContext);
     const handleClick = () => {
         navigate("/sign-in")
         }
 
         const formSubmit = async(data) => {
         try{
-            const response= await axios.post("http://localhost:3000/api/v1/user/signup",data)
+            const response= await axios.post(`${BASE_URL}/api/v1/user/signup`,data)
         if(response.data.success===true){
             toast.success(response.data.message)
             navigate("/sign-in")

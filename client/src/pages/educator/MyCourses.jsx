@@ -5,14 +5,14 @@ import axios from 'axios'
 import SkeletonCard from '../../components/educator/SkeltonCard'
 function MyCourses() {
 
-const {user} =useContext(AppContext)
+const {user,BASE_URL } =useContext(AppContext)
   const [courses,setCourses] = useState(null)
 
   const fetchEducatorCourses = async()=>{
     const token = localStorage.getItem("token")
     if (!token) return;
     try {
-        const response = await axios.get("http://localhost:3000/api/v1/course/my-course", {
+        const response = await axios.get(`${BASE_URL}/api/v1/course/my-course`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
