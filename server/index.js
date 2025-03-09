@@ -32,4 +32,6 @@ app.use("/api/v1/",mainRouter)
 
 
 
-app.listen(PORT)
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
