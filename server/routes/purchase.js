@@ -2,7 +2,7 @@ import express from "express"
 import Razorpay from "razorpay"
 import dotenv from "dotenv"
 import Purchase from "../models/Purchase.js";
-import User from "../models/user.js";
+import User from "../models/UserS.js";
 import Course from "../models/Course.js";
 import crypto from "crypto";
 

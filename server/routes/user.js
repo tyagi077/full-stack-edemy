@@ -1,5 +1,5 @@
 import express from "express"
-import User from "../models/user.js"
+import User from "../models/UserS.js"
 import { z } from "zod"
 import { CourseProgress } from "../models/CourseProgress.js"
 import Course from "../models/Course.js"

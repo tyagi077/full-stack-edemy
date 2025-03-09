@@ -3,7 +3,7 @@ import Course from "../models/Course.js"
 import { v2 as cloudinary } from 'cloudinary';
 import upload from "../config/multer.js";
 import Purchase from "../models/Purchase.js";
-import User from "../models/user.js";
+import User from "../models/UserS.js";
 import { Auth } from "../middleware/Auth.js"
 const courseRouter = express.Router()
 
