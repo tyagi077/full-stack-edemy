@@ -15,27 +15,25 @@ app.use(cors({
     credentials: true
 }));
 
-const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
-async function startServer() {
+async function initialize() {
     try {
         await connectDB();
         await connectCloudinary();
-
-        app.get("/", (req, res) => {
-            res.send("API is running");
-        });
-
-        app.use("/api/v1/", mainRouter);
-
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
-        });
+        console.log("Database and Cloudinary connected.");
     } catch (error) {
-        console.error("Error starting the server:", error);
-        process.exit(1);
+        console.error("Error initializing services:", error);
     }
 }
 
-startServer();
+initialize();
+
+app.get("/", (req, res) => {
+    res.send("API is running");
+});
+
+app.use("/api/v1/", mainRouter);
+
+// Export the app (DO NOT use app.listen())
+export default app;
