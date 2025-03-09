@@ -9,7 +9,7 @@ import connectCloudinary from "./config/cloudinary.js";
 const app = express();
 
 app.use(cors({
-    origin: ["http://localhost:5173", "https://full-stack-mayank-edemy.vercel.app"],
+    origin: ["http://localhost:5173", "https://full-stack-edemy.vercel.app"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: "Content-Type, Authorization",
     credentials: true
