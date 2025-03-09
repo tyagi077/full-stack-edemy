@@ -21,16 +21,16 @@ async function initialize() {
     try {
         await connectDB();
         await connectCloudinary();
-        console.log("Database and Cloudinary connected.");
+        console.log("✅ Database and Cloudinary connected.");
     } catch (error) {
-        console.error("Error initializing services:", error);
+        console.error("❌ Error initializing services:", error);
     }
 }
 
 initialize();
 
 app.get("/", (req, res) => {
-    res.send("API is running");
+    res.send("🚀 API is running");
 });
 
 app.use("/api/v1/", mainRouter);
