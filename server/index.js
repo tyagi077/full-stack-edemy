@@ -35,5 +35,4 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/", mainRouter);
 
-// Export the app (DO NOT use app.listen())
 export default app;
