@@ -21,6 +21,11 @@ const PORT = process.env.PORT ||3000
 app.use(express.json())
 await connectDB()
 
+app.get("/", (req, res) => {
+    res.send("API is running ");
+});
+
+
 await connectCloudinary()
 
 app.use("/api/v1/",mainRouter)

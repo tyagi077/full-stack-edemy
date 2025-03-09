@@ -5,6 +5,7 @@ import purchaseRouter from "./purchase.js"
 
 const router = express.Router()
 
+
 router.use("/user",userRouter)
 router.use("/course",courseRouter)
 router.use("/purchase",purchaseRouter)
