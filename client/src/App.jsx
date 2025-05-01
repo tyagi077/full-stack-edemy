@@ -16,6 +16,8 @@ import SignUp from './_auth/forms/SignUp'
 import SignIn from './_auth/forms/SignIn'
 import AuthLayout from './_auth/AuthLayout'
 import { ToastContainer } from 'react-toastify';
+import { NotFound } from './pages/student/NotFound'
+import ProfilePage from './components/student/Profile'
 function App() {
   const isEducatorRoute = useMatch('/educator/*')
 
@@ -39,6 +41,7 @@ function App() {
         <Route path="/course-list/:input" element={<CoursesList />} />
         <Route path="/course/:id" element={<CourseDetails />} />
         <Route path="/my-enrollments" element={<MyEnrollments />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/player/:courseId" element={<Player />} />
 
 
@@ -48,6 +51,8 @@ function App() {
           <Route path='my-course' element={<MyCourses />} />
           <Route path='student-enrolled' element={<StudentsEnrolled />} />
         </Route>
+
+        <Route path="*" element={<NotFound/>} />
 
       </Routes>
 

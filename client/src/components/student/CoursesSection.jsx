@@ -8,11 +8,12 @@ function CoursesSection() {
     const {allCourses} = useContext(AppContext)
 
   return (
-    <div className='py-16 px-40'>
-        <h2 className='text-3xl font-medium text-black'>Learn from the best</h2>
-        <p className=' text-sm mt-3 text-[#565656]'>Discover our top-rated courses across various categories. From coding and design to <br /> business and wellness, our courses are crafted to deliver results.</p>
+    <div className='py-10 small:py-6 px-5 xs:px-8 small:px-10 sm:px-10 md:px-15 lg:px-20 xl:px-30'>
+        <h2 className='text-[18px] small:text-3xl font-medium text-black'>Learn from the best</h2>
+        <p className='hidden small:inline-block text-[16px] text-sm   text-[#565656]'>Discover our top-rated courses across various categories. From coding and design to <br /> business and wellness, our courses are crafted to deliver results.</p>
+        <p className='small:hidden text-[12px]  text-[#565656]'>Discover our top-rated courses across various categories. From coding and design to business and wellness, our courses are crafted to deliver results.</p>
 
-        <div className='grid grid-cols-4 px-0 gap-4 my-16 '>
+        <div className='flex flex-wrap gap-4 my-16 items-center justify-center'>
             {allCourses.slice(0,4).map((course,index)=><CourseCard key={index} course={course} />)}
         </div>
 

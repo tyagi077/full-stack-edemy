@@ -17,6 +17,7 @@ function Home() {
         <TestimonialSection/>
         <CallToAction/>
         <Footer/>
+        
     </div>
   )
 }
