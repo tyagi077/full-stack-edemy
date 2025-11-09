@@ -115,6 +115,8 @@ function CourseDetails() {
       },
     };
 
+    console.log("data came");
+
     const rzp = new window.Razorpay(options);
     rzp.open();
   };
